@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Payment</h1>
+    </div>
+    <form th:action="@{/payments/update/{id}(id=${payment.getPaymentId()})}" method="post">
+        <label for="sale">Sale:</label>
+        <select id="sale" name="sale">
+            <option th:each="sale : ${sales}" th:value="${sale.getSaleId()}" th:text="${sale.getSaleId()()}"></option>
+        </select><br><br>
+        <label for="paymentDate">Payment Date:</label>
+        <input type="datetime-local" id="paymentDate" name="paymentDate" th:value="${payment.paymentDate}"><br><br>
+        <label for="paymentMethod">Payment Method:</label>
+        <input type="text" id="paymentMethod" name="paymentMethod" th:value="${payment.paymentMethod}"><br><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" th:value="${payment.amount}"><br><br>
+        <input class="button" type="submit" value="Update">
+    </form>
+</div>
+</body>
+</html>

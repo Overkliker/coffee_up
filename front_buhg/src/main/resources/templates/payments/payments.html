@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments</title>
+  <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1 th:text="${title}">Payments</h1>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Sale Id</th>
+      <th>Payment Date</th>
+      <th>Payment Method</th>
+      <th>Amount</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="payment : ${payments}">
+      <td th:text="${payment.getPaymentId()}">Id</td>
+      <td th:text="${payment.sale.getSaleId()}">Sale Id</td>
+      <td th:text="${payment.paymentDate}">Payment Date</td>
+      <td th:text="${payment.paymentMethod}">Payment Method</td>
+      <td th:text="${payment.amount}">Amount</td>
+      <td>
+        <a th:href="@{/payments/{id}(id=${payment.getPaymentId()})}">View</a>
+        <a th:href="@{/payments/delete/{id}(id=${payment.getPaymentId()})}">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/payments/create}" class="button">Create New Payment</a>
+</div>
+</body>
+</html>

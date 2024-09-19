@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Product</h1>
+    </div>
+    <form th:action="@{/products/update/{id}(id=${product.getProductId()})}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="${product.name}"><br><br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" th:value="${product.price}"><br><br>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" th:value="${product.category}"><br><br>
+        <input class="button" type="submit" value="Update">
+    </form>
+</div>
+</body>
+</html>

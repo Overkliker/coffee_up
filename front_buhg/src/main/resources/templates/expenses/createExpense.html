@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Expense</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Create Expense</h1>
+    </div>
+    <form th:action="@{/expenses/create}" method="post">
+        <label for="expenseDate">Expense Date:</label>
+        <input type="date" id="expenseDate" name="expenseDate"><br><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description"><br><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount"><br><br>
+        <input class="button" type="submit" value="Create">
+    </form>
+</div>
+</body>
+</html>

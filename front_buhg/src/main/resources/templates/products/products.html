@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Products</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.getProductId()}">Id</td>
+            <td th:text="${product.name}">Name</td>
+            <td th:text="${product.price}">Price</td>
+            <td th:text="${product.category}">Category</td>
+            <td>
+                <a th:href="@{/products/{id}(id=${product.getProductId()})}">View</a>
+                <a th:href="@{/products/delete/{id}(id=${product.getProductId()})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/products/create}" class="button">Create New Product</a>
+</div>
+</body>
+</html>

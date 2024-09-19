@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shops</title>
+    <link th:href="@{/css/coffeeStyle.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Coffee Shops</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="shop: ${shops}">
+            <td th:text="${shop.getShopId()}"></td>
+            <td th:text="${shop.name}"></td>
+            <td th:text="${shop.location}"></td>
+            <td th:text="${shop.phone}">${shop.phone}</td>
+            <td th:text="${shop.email}">${shop.email}</td>
+            <td>
+                <a th:href="@{/coffeeShops/{id}(id=${shop.getShopId()})}">View</a>
+                <a th:href="@{/coffeeShops/update/{id}(id=${shop.getShopId()})}">Update</a>
+                <a th:href="@{/coffeeShops/delete/{id}(id=${shop.getShopId()})}">Delete</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a th:href="@{/coffeeShops/create}" class="button">Create New Shop</a>
+</div>
+</body>
+</html>

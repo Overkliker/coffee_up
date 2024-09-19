@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Expense</h1>
+    </div>
+    <form th:action="@{/expenses/update/{id}(id=${expense.getExpenseId()})}" method="post">
+        <label for="expenseDate">Expense Date:</label>
+        <input type="date" id="expenseDate" name="expenseDate" th:value="${expense.expenseDate}"><br><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" th:value="${expense.description}"><br><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" th:value="${expense.amount}"><br><br>
+        <input class="button" type="submit" value="Update">
+    </form>
+</div>
+</body>
+</html>

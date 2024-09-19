@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale Items</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Sale Items</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sale Id</th>
+            <th>Product Id</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="saleItem : ${saleItems}">
+            <td th:text="${saleItem.getSaleItemId()}">Id</td>
+            <td th:text="${saleItem.sale.getSaleId()}">Sale Id</td>
+            <td th:text="${saleItem.product.getName()}">Product Id</td>
+            <td th:text="${saleItem.quantity}">Quantity</td>
+            <td th:text="${saleItem.subtotal}">Subtotal</td>
+            <td>
+                <a th:href="@{/saleItems/{id}(id=${saleItem.getSaleItemId()})}">View</a>
+                <a th:href="@{/saleItems/delete/{id}(id=${saleItem.getSaleItemId()})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/sale-items/create}" class="button">Create New Sale Item</a>
+</div>
+</body>
+</html>

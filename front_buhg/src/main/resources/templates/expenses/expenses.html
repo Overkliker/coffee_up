@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Expenses</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Expense Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.getExpenseId()}">Id</td>
+            <td th:text="${expense.expenseDate}">Expense Date</td>
+            <td th:text="${expense.description}">Description</td>
+            <td th:text="${expense.amount}">Amount</td>
+            <td>
+                <a th:href="@{/expenses/{id}(id=${expense.getExpenseId()})}">View</a>
+                <a th:href="@{/expenses/update/{id}(id=${expense.getExpenseId()})}">Update</a>
+                <a th:href="@{/expenses/delete/{id}(id=${expense.getExpenseId()})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/expenses/create}" class="button">Create New Expense</a>
+</div>
+</body>
+</html>

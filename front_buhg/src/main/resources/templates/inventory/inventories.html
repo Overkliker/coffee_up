@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventories</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Inventories</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Product</th>
+            <th>Quantity in Stock</th>
+            <th>Reorder Level</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="inventory : ${inventories}">
+            <td th:text="${inventory.getInventoryId()}">Id</td>
+            <td th:text="${inventory.product.name}">Product</td>
+            <td th:text="${inventory.quantityInStock}">Quantity in Stock</td>
+            <td th:text="${inventory.reorderLevel}">Reorder Level</td>
+            <td>
+                <a th:href="@{/inventories/{id}(id=${inventory.getInventoryId()})}">View</a>
+                <a th:href="@{/inventories/delete/{id}(id=${inventory.getInventoryId()})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/inventories/create}" class="button">Create New Inventory</a>
+</div>
+</body>
+</html>

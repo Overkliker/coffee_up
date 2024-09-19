@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Sale</title>
+    <link rel="stylesheet" th:href="@{/css/coffeeStyle.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Create Sale</h1>
+    </div>
+    <form th:action="@{/sales/create}" method="post">
+        <label for="coffeeShop">Coffee Shop:</label>
+        <select id="coffeeShop" name="coffeeShop">
+            <option th:each="coffeeShop : ${shops}" th:value="${coffeeShop.getShopId()}" th:text="${coffeeShop.getName()}">
+            </option>
+        </select><br><br>
+        <label for="employee">Employee:</label>
+        <select id="employee" name="employee">
+            <option th:each="employee : ${employees}" th:value="${employee.getEmployeeId()}" th:text="${employee.getEmployeeId()}">
+            </option>
+        </select><br><br>
+        <label for="saleDate">Sale Date:</label>
+        <input type="datetime-local" id="saleDate" name="saleDate"><br><br>
+        <label for="totalAmount">Total Amount:</label>
+        <input type="number" id="totalAmount" name="totalAmount"><br><br>
+        <input class="button" type="submit" value="Create">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shops</title>
+    <link th:href="@{/css/coffeeStyle.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Employees</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Shop name</th>
+            <th>Position</th>
+            <th>Hire Date</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee: ${employees}">
+                <td th:text="${employee.getEmployeeId()}"></td>
+
+                <td th:text="${employee.name}"></td>
+
+                <td th:text="${employee.coffeeShop.getName()}"></td>
+
+                <td th:text="${employee.position}"></td>
+
+                <td th:text="${employee.hireDate}"></td>
+
+                <td th:text="${employee.salary}"></td>
+
+                <td>
+                    <a th:href="@{/employee/{id}(id=${employee.getEmployeeId()})}">View</a>
+                    <a th:href="@{/employee/update/{id}(id=${employee.getEmployeeId()})}">Update</a>
+                    <a th:href="@{/employee/delete/{id}(id=${employee.getEmployeeId()})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/employee/create" class="button">Create New Employee</a>
+
+</div>
+</body>
+</html>
