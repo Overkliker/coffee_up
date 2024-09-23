@@ -5,12 +5,14 @@ import com.example.front_buhg.model.Product;
 import com.example.front_buhg.service.InventoryApi;
 import com.example.front_buhg.service.ProductApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/inventories")
+@PreAuthorize("hasAuthority('USER')")
 public class InventoryController {
     @Autowired
     private InventoryApi inventoryApi;

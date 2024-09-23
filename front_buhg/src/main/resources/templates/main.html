@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet">
+        <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet">
     <title>Main</title>
 </head>
 <body>
-<div>
-    <div  class="content">
+<div th:switch="${role}">
+    <div th:case="ADMIN"  class="content">
         <div  class="button calculator">
             <a class="btn" th:href="@{/coffeeShops}">Кофейни</a>
-        </div>
-
-        <div  class="button calculator">
-            <a class="btn" th:href="@{/employee}">Сотрудники</a>
         </div>
 
         <div  class="button calculator">
@@ -21,7 +17,48 @@
         </div>
 
         <div  class="button calculator">
+            <a class="btn" th:href="@{/products}">Продукты</a>
+        </div>
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/sales}">Акции</a>
+        </div>
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/saleItems}">Предмет продажи</a>
+        </div>
+    </div>
+
+    <div th:case="USER"  class="content">
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/expenses}">Расход</a>
+        </div>
+
+        <div  class="button calculator">
             <a class="btn" th:href="@{/inventories}">Склад</a>
+        </div>
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/products}">Продукты</a>
+        </div>
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/sales}">Акции</a>
+        </div>
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/saleItems}">Предмет продажи</a>
+        </div>
+    </div>
+
+    <div th:case="MANAGER"  class="content">
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/employee}">Сотрудники</a>
+        </div>
+
+        <div  class="button calculator">
+            <a class="btn" th:href="@{/expenses}">Расход</a>
         </div>
 
         <div  class="button calculator">

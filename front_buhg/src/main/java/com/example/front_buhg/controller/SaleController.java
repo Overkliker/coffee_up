@@ -7,10 +7,7 @@ import com.example.front_buhg.service.SaleApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/sales")
@@ -51,7 +48,7 @@ public class SaleController {
     }
 
     @PostMapping("/create")
-    public String saveProduct(@PathVariable Long shopId, @PathVariable Long employeeId, Sale sale) {
+    public String saveProduct(@RequestParam Long shopId, @RequestParam Long employeeId, Sale sale) {
         sale.setCoffeeShop(coffeeShopApi.getById(shopId));
         sale.setEmployee(employeeApi.getById(employeeId));
         saleApi.save(sale);
@@ -59,8 +56,9 @@ public class SaleController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable Long id, @PathVariable Long shopId, Sale sale) {
+    public String updateProduct(@PathVariable Long id, @RequestParam Long shopId, @RequestParam Long employeeId, Sale sale) {
         sale.setCoffeeShop(coffeeShopApi.getById(shopId));
+        sale.setEmployee(employeeApi.getById(employeeId));
         saleApi.update(sale, id);
         return "redirect:/sales";
 

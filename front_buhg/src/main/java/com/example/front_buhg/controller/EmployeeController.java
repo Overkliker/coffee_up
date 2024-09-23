@@ -4,12 +4,14 @@ import com.example.front_buhg.model.Employee;
 import com.example.front_buhg.service.CoffeeShopApi;
 import com.example.front_buhg.service.EmployeeApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/employee")
+@PreAuthorize("hasAuthority('MANAGER')")
 public class EmployeeController {
     @Autowired
     private EmployeeApi employeeApi;

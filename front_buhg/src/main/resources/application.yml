@@ -1,6 +1,6 @@
 spring:
   application:
-    name: buhg_rest
+    name: front_buhg
 
   jpa:
     database: POSTGRESQL
@@ -16,4 +16,4 @@ spring:
     url: jdbc:postgresql://localhost:5432/up
 
 server:
-  port: 8000
+  port: 8081

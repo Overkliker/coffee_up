@@ -8,10 +8,7 @@ import com.example.front_buhg.service.SaleItemApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -54,26 +51,26 @@ public class SaleItemController {
     }
 
     @PostMapping("/create")
-    public String saveProduct(@PathVariable Long productId, @PathVariable Long saleId, SaleItem saleItem) {
+    public String saveProduct(@RequestParam Long productId, @RequestParam Long saleId, SaleItem saleItem) {
         saleItem.setProduct(productApi.getById(productId));
         saleItem.setSale(saleApi.getById(saleId));
         saleItemApi.save(saleItem);
-        return "redirect:/sales";
+        return "redirect:/saleItems";
     }
 
     @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable Long id, @PathVariable Long productId, @PathVariable Long saleId, SaleItem saleItem) {
+    public String updateProduct(@PathVariable Long id, @RequestParam Long productId, @PathVariable Long saleId, SaleItem saleItem) {
         saleItem.setProduct(productApi.getById(productId));
         saleItem.setSale(saleApi.getById(saleId));
         saleItemApi.update(saleItem, id);
-        return "redirect:/sales";
+        return "redirect:/saleItems";
 
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
-        saleApi.delete(id);
-        return "redirect:/sales";
+        saleItemApi.delete(id);
+        return "redirect:/saleItems";
     }
 }
 
